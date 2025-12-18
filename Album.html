@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Album</title>
+    <link rel="stylesheet" href="Album.css">
+</head>
+
+<body>
+    <section class="top">
+        <img src="img/bmulogo.png" alt="Top Background">
+       
+        
+    </section>
+    <section class="head">
+        <a href='index.html'>
+            <h3>Home</h3>
+        </a>
+        <div>
+            <input type="text" placeholder="">
+            <span><button>Search</button></span>
+        </div>
+    </section>
+
+    <section class="album">
+        <div class="item">
+            <img src="img/deepanshu.png" alt="Deepanshu">
+            <h4>Deepanshu Goyal</h4>
+            <p>Member of BMU Fans.</p>
+        </div>
+        <div class="item">
+            <img src="img/anubhav.png" alt="Anubhav">
+            <h4>Anubhav</h4>
+            <p>Member of BMU Fans.</p>
+        </div>
+        <div class="item">
+            <img src="img/devansh.png" alt="Devansh">
+            <h4>Devansh</h4>
+            <p>Member of BMU Fans.</p>
+        </div>
+        <div class="item">
+            <img src="img/divyam.png" alt="Divyam">
+            <h4>Divyam</h4>
+            <p>Member of BMU Fans.</p>
+        </div>
+        <div class="item">
+            <img src="img/sahil.png" alt="Sahil">
+            <h4>Sahil</h4>
+            <p>Member of BMU Fans.</p>
+        </div>
+        <div class="item">
+            <img src="img/shaswat.png" alt="Shaswat">
+            <h4>Shaswat</h4>
+            <p>Member of BMU Fans.</p>
+        </div>
+        <div class="item">
+            <img src="img/suvansh.png" alt="Suvansh">
+            <h4>Suvansh</h4>
+            <p>Member of BMU Fans.</p>
+        </div>
+        <div class="item">
+            <img src="img/group.jpg" alt="Group Photo">
+            <h4>Group Photo</h4>
+            <p>BMU Fans group.</p>
+        </div>
+        <div class="item">
+            <img src="img/groupphoto.jpg" alt="Group Photo 2">
+            <h4>Group Photo 2</h4>
+            <p>Another group photo.</p>
+        </div>
+        <div class="item">
+            <img src="img/bmufrontview.jpg" alt="BMU Front View">
+            <h4>BMU Front View</h4>
+            <p>View of BMU campus.</p>
+        </div>
+    </section>
+
+    <div class="modal fade" id="imageModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <img id="modalImage" src="" alt="" style="width:100%;">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/jquery-1.9.1.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/imagesloaded.js"></script>
+    <script src="js/masonry.pkgd.min.js"></script>
+    <script src="js/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+    <script src="js/modernizr.custom.js"></script>
+    <script src="js/AnimOnScroll.js"></script>
+    <script src="js/classie.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('.album').imagesLoaded(function(){
+                $('.album').masonry({
+                    itemSelector: '.item',
+                    columnWidth: 220,
+                    gutter: 10
+                });
+            });
+
+            // Search functionality
+            $('input').on('input', function(){
+                var query = $(this).val().toLowerCase();
+                $('.item').each(function(){
+                    var text = $(this).text().toLowerCase();
+                    if(text.includes(query)){
+                        $(this).show();
+                    } else {
+                        $(this).hide();
+                    }
+                });
+                $('.album').masonry('layout');
+            });
+
+            // Image modal
+            $('.item img').on('click', function(){
+                var src = $(this).attr('src');
+                var alt = $(this).attr('alt');
+                $('#modalImage').attr('src', src).attr('alt', alt);
+                $('#imageModal').modal('show');
+            });
+        });
+    </script>
+
+    </body>
+
+    </html>
